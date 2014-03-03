@@ -23,11 +23,16 @@ module BikeContainer
   end
 
   def release(bike)
+    raise "No bikes docked" if empty?
     bikes.delete(bike)
   end
 
   def full?
     bike_count == capacity
+  end
+
+  def empty?
+    bike_count == 0
   end
 
   def available_bikes

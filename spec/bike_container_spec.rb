@@ -40,4 +40,13 @@ describe BikeContainer do
     holder.dock(broken_bike)
     expect(holder.available_bikes).to eq([working_bike])
   end
+
+  it "should not realease a bike if it is empty" do
+    expect(lambda {holder.release(bike)}).to raise_error(RuntimeError)
+  end
 end
+
+
+
+
+
