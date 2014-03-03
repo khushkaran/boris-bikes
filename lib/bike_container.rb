@@ -18,12 +18,12 @@ module BikeContainer
   end
 
   def dock(bike)
-    raise "Container is full" if full?
+    raise "Container is full/No Bike as argument" if full? || !bike.instance_of?(Bike)
     bikes << bike
   end
 
   def release(bike)
-    raise "No bikes docked" if empty?
+    raise "No bikes docked/No Bike as argument" if empty? || !bike.instance_of?(Bike)
     bikes.delete(bike)
   end
 
