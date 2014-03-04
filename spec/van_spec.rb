@@ -12,8 +12,22 @@ describe Van do
     @broken_bike.break
   end
 
+  def fill_van(van)
+    50.times {
+      bike = Bike.new
+      bike.break
+      van.dock(bike)
+    }
+  end
+
   it "should allow setting default capacity on initialising" do
     expect(van.capacity).to eq(50)
+  end
+
+  it "should not accept more 50 bikes" do
+    expect(van).not_to be_full
+    fill_van van
+    expect(van).to be_full
   end
 
   it "should only dock broken bikes into van from docking station" do
