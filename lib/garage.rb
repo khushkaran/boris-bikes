@@ -9,9 +9,7 @@ class Garage
   end
 
   def fix_bikes(bikes)
-    bikes.each do |bike|
-      bike.fix
-    end
+    bikes.each {|bike| bike.fix}
   end
 
   def accept_broken_bikes(van)

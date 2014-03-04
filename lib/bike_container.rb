@@ -24,15 +24,11 @@ module BikeContainer
   end
 
   def put_in(bikes)
-    bikes.each do |bike|
-      dock(bike)
-    end
+    bikes.each {|bike| dock(bike)}
   end
 
   def take_out(bikes)
-    bikes.each do |bike|
-      release(bike)
-    end
+    bikes.each {|bike| release(bike)}
   end
 
   def full?
