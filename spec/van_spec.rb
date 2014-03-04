@@ -16,42 +16,42 @@ describe Van do
     expect(van.capacity).to eq(50)
   end
 
-  it "should only dock broken bikes from docking station" do
+  it "should only dock broken bikes into van from docking station" do
     test_bikes
     station.dock(@working_bike)
     station.dock(@broken_bike)
-    station.broken_bikes.each do |bike|
-      van.dock(bike)
-    end
+    van.put_in(station.broken_bikes)
+    station.take_out(van.broken_bikes)
     expect(van.bikes).to eq([@broken_bike])
+    expect(station.bikes.count).to eq(1)
   end
 
-  it "should only collect fixed bikes from the garage" do
+  it "should only dock fixed bikes into van from the garage" do
     test_bikes
     garage.dock(@working_bike)
     garage.dock(@broken_bike)
-    garage.available_bikes.each do |bike|
-      van.dock(bike)
-    end
+    van.put_in(garage.available_bikes)
+    garage.take_out(van.available_bikes)
     expect(van.bikes).to eq([@working_bike])
+    expect(garage.bikes.count).to eq(1)
   end
 
-  it "should release broken bikes to the garage" do
+  it "should release broken bikes from the van to the garage" do
     test_bikes
     van.dock(@broken_bike)
-    van.broken_bikes.each do |bike|
-      garage.dock(bike)
-    end
+    garage.put_in(van.broken_bikes)
+    van.take_out(garage.broken_bikes)
     expect(garage.bikes).to eq([@broken_bike])
+    expect(van.bikes.count).to eq(0)
   end
 
-  it "should release fixed bikes to the docking station" do
+  it "should release fixed bikes from the van to the docking station" do
     test_bikes
     van.dock(@working_bike)
-    van.available_bikes.each do |bike|
-      station.dock(bike)
-    end
+    station.put_in(van.available_bikes)
+    van.take_out(station.available_bikes)
     expect(station.bikes).to eq([@working_bike])
+    expect(van.bikes.count).to eq(0)
   end
 
 end
