@@ -19,18 +19,16 @@ describe Garage do
   it "should only dock broken bikes into garage from van" do
     test_bikes
     van.dock(@broken_bike)
-    garage.put_in(van.broken_bikes)
-    van.take_out(garage.broken_bikes)
+    garage.accept_broken_bikes(van)
     expect(garage.bikes).to eq([@broken_bike])
     expect(van.bikes.count).to eq(0)
   end
 
   it "should only release fixed bikes into van from garage" do
     test_bikes
-    garage.dock(@broken_bike)
-    garage.fix_bikes(garage.broken_bikes)
-    van.put_in(garage.available_bikes)
-    garage.take_out(van.available_bikes)
+    van.dock(@broken_bike)
+    garage.accept_broken_bikes(van)
+    garage.release_fixed_bikes(van)
     expect(van.bikes).to eq([@broken_bike])
     expect(garage.bikes.count).to eq(0)
   end
