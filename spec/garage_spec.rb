@@ -12,8 +12,18 @@ describe Garage do
     @broken_bike.break
   end
 
+  def fill_garage
+    100.times {garage.dock(Bike.new)}
+  end
+
   it "should allow setting default capacity on initialising" do
     expect(garage.capacity).to eq(100)
+  end
+
+  it "should not expect more than 100 bikes" do
+    expect(garage).not_to be_full
+    fill_garage
+    expect(garage).to be_full
   end
 
   it "should only dock broken bikes into garage from van" do
