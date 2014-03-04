@@ -1,11 +1,11 @@
 require_relative "../lib/van"
-
-class ContainerHolder; include BikeContainer; end
+require_relative "../lib/docking_station"
+require_relative "../lib/garage"
 
 describe Van do
   let(:van) {Van.new(:capacity => 50)}
-  let(:station) {ContainerHolder.new}
-  let(:garage) {ContainerHolder.new}
+  let(:station) {DockingStation.new(:capacity => 20)}
+  let(:garage) {Garage.new(:capacity => 100)}
 
   def test_bikes
     @working_bike, @broken_bike = Bike.new, Bike.new
@@ -55,7 +55,3 @@ describe Van do
   end
 
 end
-
-
-
-
