@@ -7,4 +7,10 @@ class Garage
     self.capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
+  def fix_bikes(bikes)
+    bikes.each do |bike|
+      bike.fix
+    end
+  end
+
 end
