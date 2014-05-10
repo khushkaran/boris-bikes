@@ -1,4 +1,4 @@
-Boris Bikes
+Boris Bikes [![Code Climate](https://codeclimate.com/github/khushkaran/boris-bikes.png)](https://codeclimate.com/github/khushkaran/boris-bikes)
 ---
 This was the week 3 project @makersacademy set by
 [@shadchnev](https://github.com/shadchnev). For this project
